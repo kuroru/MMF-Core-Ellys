@@ -1,4 +1,4 @@
-name: DEVELOP_NOTE Auto-Update
+name: Whitepaper Auto-Update
 
 permissions:
   contents: write
@@ -7,21 +7,20 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'meta/**'
-      - 'scripts/**'
+      - 'docs/MMF_Ellys_MVF_Whitepaper.md'
+      - 'scripts/generate_mmf_whitepaper.py'
 
 jobs:
-  update-devnote:
+  update-whitepaper:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: 개발노트 생성
-        run: python scripts/make_dev_note.py
+      - name: 백서 자동생성
+        run: python scripts/generate_mmf_whitepaper.py
       - name: 커밋 & 푸시
         run: |
           git config --global user.name "sentinel-bot"
           git config --global user.email "sentinel@bot.com"
-          git add DEVELOP_NOTE.md
-          git commit -m "자동 개발노트 업데이트" || echo "No changes to commit"
+          git add docs/MMF_Ellys_MVF_Whitepaper.md
+          git commit -m "백서 자동 업데이트" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kuroru/MMF-Core-Ellys.git HEAD:main
-
