@@ -1,0 +1,6 @@
+{
+  "version": "0.1",
+  "policy": "단계별 XP 집계, 목표치 100 달성 시 레벨업",
+  "level_up_xp": 100,
+  "auto_reset": false
+}
