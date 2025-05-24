@@ -1,9 +1,4 @@
-# MMF Core Ellys - 오류 없는 설정 스크립트
-# MMF Core Ellys - 오류 없는 설정 스크립트
-# 한글 깨짐 방지 인코딩 설정
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-$OutputEncoding = [System.Text.Encoding]::UTF8
-chcp 65001 | Out-Null
+chcp 65001
 
 Write-Host "=== MMF Core Ellys 프로젝트 초기화 ===" -ForegroundColor Cyan
 
