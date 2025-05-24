@@ -1,0 +1,23 @@
+name: DEVELOP_NOTE Auto-Update
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'meta/**'
+      - 'scripts/**'
+
+jobs:
+  update-devnote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 개발노트 생성
+        run: python scripts/make_dev_note.py
+      - name: 커밋 & 푸시
+        run: |
+          git config --global user.name "sentinel-bot"
+          git config --global user.email "sentinel@bot.com"
+          git add DEVELOP_NOTE.md
+          git commit -m "자동 개발노트 업데이트"
+          git push

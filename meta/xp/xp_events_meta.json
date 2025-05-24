@@ -1,0 +1,9 @@
+﻿{
+  "event": "XP증가",
+  "user": "마스터",
+  "file": "error_pool.json",
+  "xp_before": 310,
+  "xp_delta": 10,
+  "xp_after": 320,
+  "datetime": "2025-05-24T05:27:00+09:00"
+}
