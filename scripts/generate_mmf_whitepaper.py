@@ -22,4 +22,3 @@ with open(output_file, "w", encoding="utf-8") as out:
             out.write(f"# [미작성] {ch}\n\n---\n\n")
 
 print(f"{output_file} 자동 생성 완료.")
-# c:\Users\kuror\Downloads\지이엠파트너스\MMF개발관련\MMF\MMF-Core-Ellys\scripts\generate_mmf_whitepaper.py

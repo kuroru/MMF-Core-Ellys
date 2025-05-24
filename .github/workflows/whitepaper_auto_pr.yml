@@ -1,0 +1,42 @@
+name: Whitepaper PR Auto-Update
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-whitepaper-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 파이썬 셋업
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 챕터별 파일 통합 → 백서 생성
+        run: python scripts/generate_mmf_whitepaper.py
+
+      - name: PR용 자동 브랜치 생성 및 커밋
+        run: |
+          git config --global user.name "sentinel-bot"
+          git config --global user.email "sentinel@bot.com"
+          git checkout -b auto/whitepaper-update-${{ github.run_id }}
+          git add docs/MMF_Ellys_MVF_Whitepaper.md
+          git commit -m "MMF 백서 자동 통합/챕터 업데이트"
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kuroru/MMF-Core-Ellys.git HEAD:auto/whitepaper-update-${{ github.run_id }}
+
+      - name: PR 자동 생성
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GH_PAT }}
+          commit-message: "MMF 백서 자동 통합/챕터 업데이트"
+          title: "MMF 백서 자동 PR"
+          body: |
+            - 챕터별 파일을 통합하여 백서를 자동 갱신합니다.
+            - 머지 시 최신 백서가 main에 반영됩니다.
+          branch: auto/whitepaper-update-${{ github.run_id }}
