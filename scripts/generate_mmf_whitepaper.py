@@ -1,49 +1,25 @@
 import os
 
-# 백서 내용 (0장, 필요시 계속 추가/확장)
-whitepaper_content = """
-# 0장. 프롤로그 및 철학
+chapters = [
+    "0_prologue.md",
+    "1_structure.md",
+    "2_modules.md",
+    "3_automation.md",
+    "4_practice.md",
+    "5_roadmap.md"
+]
+base_dir = "docs/whitepaper"
+output_file = "docs/MMF_Ellys_MVF_Whitepaper.md"
 
-MMF(메트릭스형 메타프레임워크)는 "체계적인 자유"를 핵심 가치로 둔다.
-이 프레임워크는 복잡한 전략·개발·협업 환경에서 반복성과 예측 가능성을 유지하면서도, 개인 또는 조직이 각자의 목적과 특색에 맞게 응용할 수 있도록 설계되었다.
+with open(output_file, "w", encoding="utf-8") as out:
+    for ch in chapters:
+        path = os.path.join(base_dir, ch)
+        if os.path.exists(path):
+            with open(path, encoding="utf-8") as f:
+                out.write(f.read())
+                out.write("\n\n---\n\n")
+        else:
+            out.write(f"# [미작성] {ch}\n\n---\n\n")
 
-MMF의 출발점은 ‘틀이 있어야 진짜 자유가 실현된다’는 기본 원칙에 있다.
-무질서한 자유는 혼란으로 이어지기 쉽지만, 기준과 규칙이 정립된 ‘구조화된 자유’는 실제 실험과 혁신의 기반이 된다.
-
-## 연극/무대 메타포의 의미
-
-MMF는 연극, 무대, 극장 메타포를 차용한다.
-모든 사용자는 무대 위의 ‘배우’이며, MMF라는 시스템은 그 무대를 유지·관리하는 '극장'이자 ‘시스템 관리자’ 역할을 한다.
-- 무대(Framework): 모든 규칙과 질서, 배경이 깔려 있는 공간
-- 배우(사용자, 시스템 컴포넌트): 정해진 룰 안에서 각자의 역할을 수행
-- 조명/음향(자동화, 검증, XP 등): 사용자와 시스템의 상태를 실시간으로 비추고 안내
-
-이 비유는 “정해진 틀 안에서 최선을 다해 창의적으로 움직이는 것”을 강조한다.
-
-## 틀 안의 자유 ― 실질적 정의
-
-여기서 말하는 ‘틀’은 단순한 구속이 아니라, 반복적 실수 예방, 성장 경로 표준화, 문제 해결의 가이드로서의 역할을 가진다.
-자유는 그 틀 안에서 각자만의 방식, 전략, 프로세스를 실험하고 발전시키는 과정이다.
-
-실제로 MMF는
-- 표준화된 구조(폴더, 파일, 프로토콜)와
-- 사용자 맞춤형 커스텀(템플릿, 자동화, 개별화 설정)
-을 동시에 제공한다.
-즉, ‘구조화된 유연성’을 추구한다.
-
-## MMF의 존재 이유와 기대효과
-
-MMF가 추구하는 궁극적 목적은 다음과 같다.
-1. 실질적 문제해결력 강화
-2. 자동화와 반복성 제공
-3. 사용자 중심의 맞춤 적용
-"""
-
-# docs 폴더 없으면 생성
-os.makedirs("docs", exist_ok=True)
-
-# 백서 파일 저장
-with open("docs/MMF_Ellys_MVF_Whitepaper.md", "w", encoding="utf-8") as f:
-    f.write(whitepaper_content)
-
-print("MMF_Ellys_MVF_Whitepaper.md 파일이 docs 폴더에 자동 생성/업데이트 되었습니다.")
+print(f"{output_file} 자동 생성 완료.")
+# c:\Users\kuror\Downloads\지이엠파트너스\MMF개발관련\MMF\MMF-Core-Ellys\scripts\generate_mmf_whitepaper.py
