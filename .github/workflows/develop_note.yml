@@ -1,5 +1,8 @@
 name: DEVELOP_NOTE Auto-Update
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
