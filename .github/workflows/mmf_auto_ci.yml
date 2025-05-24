@@ -9,7 +9,11 @@ on:
 
 jobs:
   build-test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,18 +23,26 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt || true
-
+      # 파이썬/테스트/패치노트 스텝 (예시)
       - name: Run Lint
-        run: |
-          echo "No lint script yet"  # 추후 flake8 등 적용
+        run: echo "No lint script yet"
 
       - name: Run Tests
-        run: |
-          echo "No test script yet"  # tests/ 폴더 연동시 교체
+        run: echo "No test script yet"
 
       - name: Auto Sync PatchNotes
-        run: |
-          echo "Patch note auto-sync stub"
+        run: echo "Patch note auto-sync stub"
+
+      # 🟦 윈도우에서만 PowerShell 자동감시 실행
+      - name: Run PowerShell Error Watcher
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: pwsh -File "scripts/error_pool_watcher.ps1"
+
+      # 🟧 (리눅스 예시 — 미설치 시 스킵, 필요시 apt 설치)
+      # - name: Run PowerShell Error Watcher (Linux)
+      #   if: runner.os == 'Linux'
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y powershell
+      #     pwsh -File scripts/error_pool_watcher.ps1

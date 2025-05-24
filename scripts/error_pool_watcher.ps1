@@ -15,3 +15,4 @@ while ($true) {
     }
     Start-Sleep -Seconds 10
 }
+if (Test-Path "$path") { Copy-Item "$path" "$path.bak" -Force }
