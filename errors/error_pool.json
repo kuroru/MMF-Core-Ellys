@@ -1,0 +1,5 @@
+[
+  {"id": "E-001", "desc": "캔버스-깃허브 미동기화", "status": "open", "detected": "2025-05-24"},
+  {"code": "E001", "desc": "XP 미합산", "resolved": false},
+  {"code": "E002", "desc": "핸드셰이크 실패", "resolved": true}
+]
