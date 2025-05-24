@@ -1,4 +1,7 @@
+import os
 
+# 백서 내용 (0장, 필요시 계속 추가/확장)
+whitepaper_content = """
 # 0장. 프롤로그 및 철학
 
 MMF(메트릭스형 메타프레임워크)는 "체계적인 자유"를 핵심 가치로 둔다.
@@ -34,3 +37,13 @@ MMF가 추구하는 궁극적 목적은 다음과 같다.
 1. 실질적 문제해결력 강화
 2. 자동화와 반복성 제공
 3. 사용자 중심의 맞춤 적용
+"""
+
+# docs 폴더 없으면 생성
+os.makedirs("docs", exist_ok=True)
+
+# 백서 파일 저장
+with open("docs/MMF_Ellys_MVF_Whitepaper.md", "w", encoding="utf-8") as f:
+    f.write(whitepaper_content)
+
+print("MMF_Ellys_MVF_Whitepaper.md 파일이 docs 폴더에 자동 생성/업데이트 되었습니다.")
