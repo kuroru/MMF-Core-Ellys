@@ -19,5 +19,6 @@ jobs:
           git config --global user.name "sentinel-bot"
           git config --global user.email "sentinel@bot.com"
           git add DEVELOP_NOTE.md
-          git commit -m "자동 개발노트 업데이트"
-          git push
+          git commit -m "자동 개발노트 업데이트" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kuroru/MMF-Core-Ellys.git HEAD:main
+
