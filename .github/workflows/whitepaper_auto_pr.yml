@@ -1,4 +1,4 @@
-name: Whitepaper PR Auto-Update
+name: Whitepaper PR & Release Auto-Update
 
 permissions:
   contents: write
@@ -21,6 +21,7 @@ jobs:
       - name: 챕터별 파일 통합 → 백서 생성
         run: python scripts/generate_mmf_whitepaper.py
 
+      # 반드시 새 브랜치로 커밋/푸시
       - name: PR용 자동 브랜치 생성 및 커밋
         run: |
           git config --global user.name "sentinel-bot"
@@ -37,6 +38,29 @@ jobs:
           commit-message: "MMF 백서 자동 통합/챕터 업데이트"
           title: "MMF 백서 자동 PR"
           body: |
-            - 챕터별 파일을 통합하여 백서를 자동 갱신합니다.
-            - 머지 시 최신 백서가 main에 반영됩니다.
+            챕터별 파일을 통합하여 백서를 자동 갱신합니다.
+            머지 시 최신 백서가 main에 반영됩니다.
           branch: auto/whitepaper-update-${{ github.run_id }}
+
+  # main 브랜치에 머지된 후 Release 자동 트리거
+  release-whitepaper:
+    needs: update-whitepaper-pr
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 최신 백서 파일 확인
+        run: cat docs/MMF_Ellys_MVF_Whitepaper.md | head -20
+
+      - name: 릴리즈 생성 및 파일 첨부
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GH_PAT }}
+          tag_name: v${{ github.run_number }}
+          name: "MMF Whitepaper Release ${{ github.run_number }}"
+          body: |
+            MMF 백서 자동 릴리즈입니다.
+            - 버전: ${{ github.run_number }}
+            - 파일: docs/MMF_Ellys_MVF_Whitepaper.md
+          files: docs/MMF_Ellys_MVF_Whitepaper.md
