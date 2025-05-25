@@ -1,0 +1,16 @@
+name: Auto Delete Branch After PR Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Delete branch after PR merge
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{ secrets.GH_PAT }}

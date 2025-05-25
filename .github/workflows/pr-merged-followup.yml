@@ -1,0 +1,20 @@
+name: PR Merged Follow-up
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Add comment to merged PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ✅ 이 PR은 main에 성공적으로 머지되었습니다.
+            관련 브랜치는 자동 삭제되며, 최신 백서가 반영되었습니다.
