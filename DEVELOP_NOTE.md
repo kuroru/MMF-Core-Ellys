@@ -1,28 +1,13 @@
-# Cloud Run(구글 런) 공식 서비스 주소
-# 서비스 명: MMF-Hook 중계서버
+## 0. 인프라 및 연동 정보
 
-- Cloud Run URL:
-- https://mmf-hook-1042382168153.asia-northeast3.run.app
+- **Cloud Run 중계서버**
+  - URL: [https://mmf-hook-1042382168153.asia-northeast3.run.app](https://mmf-hook-1042382168153.asia-northeast3.run.app)
+  - 설명: ChatGPT, 자동화 시스템에서 /trigger 등 API POST로 자동화 트리거
 
-- 설명:
-
-- ChatGPT, 외부 봇/자동화 시스템에서
-- 자동화 트리거(API POST)로 사용
-
-- GitHub Actions 워크플로(dispatch) 트리거 및
-- 개발노트(DEVELOP_NOTE.md) 실시간 커밋/푸시 연동
-
-- 주요 포트:
-
-- 8080(Cloud Run 기본),
-
-- 개발용 Flask는 5000(로컬 테스트)
-
-- API 주요 경로:
-
-- POST /trigger (자동화 명령 실행, 본문에 “devnote_content” 포함 가능)
-
-- (Webhook, REST API 등 추가 확장 가능)
+  - 주요 포트: 8080 (Cloud Run), 5000 (로컬 Flask)
+  - API: POST /trigger (devnote_content 포함 가능)
+  
+  - 인증: Authorization 헤더(토큰, 환경변수), 관리자/담당자 정보 포함 권장
 
 
 # 센티넬 개발노트
