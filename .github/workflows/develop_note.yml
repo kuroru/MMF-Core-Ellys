@@ -13,13 +13,36 @@ jobs:
   update-devnote:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: 개발노트 생성
-        run: python scripts/make_dev_note.py
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 환경 세팅
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 개발노트 생성 및 메타정보 동기화
+        run: |
+          python scripts/make_dev_note.py
+          # (옵션) 전체 메타 동기화 루틴 추가
+          # python scripts/update_all_meta.py
+
+      - name: 변경 파일 확인
+        id: git-check
+        run: |
+          git status
+          git diff --name-only > files.txt
+          if grep -q DEVELOP_NOTE.md files.txt; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: 커밋 & 푸시
+        if: steps.git-check.outputs.changed == 'true'
         run: |
           git config --global user.name "sentinel-bot"
           git config --global user.email "sentinel@bot.com"
           git add DEVELOP_NOTE.md
-          git commit -m "자동 개발노트 업데이트" || echo "No changes to commit"
+          git commit -m "자동 개발노트/메타정보 업데이트"
           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kuroru/MMF-Core-Ellys.git HEAD:main

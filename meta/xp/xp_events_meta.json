@@ -1,9 +1,10 @@
-﻿{
-  "event": "XP증가",
-  "user": "마스터",
-  "file": "error_pool.json",
-  "xp_before": 310,
-  "xp_delta": 10,
-  "xp_after": 320,
-  "datetime": "2025-05-24T05:27:00+09:00"
-}
+[
+  {
+    "timestamp": "2025-05-26T02:15:01.973849",
+    "event": "xp_add",
+    "value": 20,
+    "reason": "테스트 작업",
+    "user": "master",
+    "target_file": "xp/xp_table.json"
+  }
+]

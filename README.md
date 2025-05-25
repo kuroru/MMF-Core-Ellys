@@ -1,3 +1,11 @@
+---
+meta:
+  updated: 2025-05-26T01:40:45
+  author: master
+  branch: main
+  commit: latest
+  tags: []
+---
 # MMF-Core-Ellys
 
 본 레포는 MMF(메트릭스 메타 프레임워크) 코어 구조 및 자동화/검증/XP 엔진을 구현합니다.

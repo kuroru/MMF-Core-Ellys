@@ -1,0 +1,11 @@
+[
+  {
+    "timestamp": "2025-05-26T02:15:50.678737",
+    "event": "reward_granted",
+    "reward_name": "프리미엄 배지",
+    "value": 1,
+    "reason": "특정 미션 달성",
+    "user": "master",
+    "target_file": "rewards.json"
+  }
+]
