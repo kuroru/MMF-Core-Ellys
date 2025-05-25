@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 파이썬 셋업
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -48,7 +48,7 @@ jobs:
             머지 시 최신 백서가 main에 반영됩니다.
           branch: auto/whitepaper-update-${{ github.run_id }}
 
-  # main에 머지될 때 Release 자동 생성 (필요하면 아래 job만 사용, 생략 가능)
+  # main에 머지될 때 Release 자동 생성
   release-whitepaper:
     needs: update-whitepaper-pr
     runs-on: ubuntu-latest

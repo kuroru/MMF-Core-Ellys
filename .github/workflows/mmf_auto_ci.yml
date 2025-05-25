@@ -23,13 +23,13 @@ jobs:
         with:
           python-version: "3.11"
 
-      # (옵션) requirements.txt 미존재 시 무시
+      # (Optional) requirements.txt 자동 설치
       - name: Install dependencies (optional)
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         shell: bash
 
-      # Lint / Test / PatchNote 스텝 (샘플)
+      # Lint / Test / Patchnote 스텝 (샘플)
       - name: Run Lint
         run: echo "No lint script yet"
 
@@ -39,17 +39,11 @@ jobs:
       - name: Auto Sync PatchNotes
         run: echo "Patch note auto-sync stub"
 
-      # 🟦 윈도우에서만 PowerShell 감시/복구 스크립트 실행
+      # 윈도우에서만 PowerShell 감시/복구 스크립트 실행
       - name: Run PowerShell Error Watcher (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          pwsh -File "scripts/error_pool_watcher.ps1"
-
-      # 🟧 (선택) 리눅스에서 PowerShell 설치 후 감시/복구 실행
-      - name: Run PowerShell Error Watcher (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y powershell
-          pwsh -File scripts/error_pool_watcher.ps1
+          if (Test-Path "scripts/error_pool_watcher.ps1") {
+            pwsh scripts/error_pool_watcher.ps1
+          }
