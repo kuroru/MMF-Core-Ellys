@@ -1,0 +1,12 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "mmf_auto_update",
+  "description_for_model": "MMF 백서/문서 자동화 플러그인. 명령 시 API로 내용을 전송해 파일 생성·커밋·푸시까지 자동화.",
+  "api": {
+    "type": "openapi",
+    "url": "https://mmf-hook-1042382168153.asia-northeast3.run.app/openapi.yaml"
+  },
+  "auth": {
+    "type": "none"
+  }
+}

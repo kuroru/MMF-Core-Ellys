@@ -1,9 +1,13 @@
 {
-  "version": "0.1",
-  "policies": [
-    {"id": "P-001", "desc": "XP/정책/보상 기준은 반드시 깃허브 레포 기준"}
-  ],
-  "핸드셰이크 정책": "MMF와 Github 1일 1회 동기화",
-  "에러풀 정책": "에러 발생시 즉시 로그화",
-  "XP_정책": "모듈별 XP 실시간 합산"
+  "version": "v3.5.1",
+  "last_update": "2025-05-25",
+  "xp_policy": {
+    "min_xp": 0,
+    "level_up_threshold": 100,
+    "reward_system": "signature"
+  },
+  "error_policy": {
+    "auto_archive": true,
+    "fail_log_notify": true
+  }
 }
