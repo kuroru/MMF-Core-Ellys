@@ -1,0 +1,25 @@
+name: MMF Daily Batch
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # 한국시간 24시(UTC+9)
+  workflow_dispatch:
+
+jobs:
+  batch-collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run batch collector
+        run: python schedulers/batch_collector.py
+      - name: Commit & Push meta
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add meta/
+          git commit -m "자동 배치: meta daily update"
+          git push
