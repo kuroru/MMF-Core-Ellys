@@ -66,3 +66,5 @@ MMF-Scalable-Base/
 
 ## 라이선스/기여
 - 누구나 PR/이슈/플러그인 환영
+- MIT License
+- kuroru@naver.com
