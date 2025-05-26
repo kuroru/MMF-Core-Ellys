@@ -1,0 +1,11 @@
+2025-05-27T02:23:54.350303 | [MMF 시작선언 핸드셰이크]
+SUCCESS: policies/mmf_policy.json
+SUCCESS: xp/xp_table.json
+SUCCESS: xp/rewards_catalog.yaml
+SUCCESS: projects/MMF-001/error_pool.json
+SUCCESS: .github/meta_logs/xp_events.json
+SUCCESS: xp/user_xp_table.json
+SUCCESS: xp/gpt_xp_table.json
+SUCCESS: xp/sentinel_xp_table.json
+SUCCESS: xp/sentinel_xp_table.json
+2025-05-27T02:23:54.671380 | 디스코드 핸드셰이크 알람 전송 완료

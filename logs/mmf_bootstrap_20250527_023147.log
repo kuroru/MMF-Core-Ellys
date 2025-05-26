@@ -1,0 +1,16 @@
+2025-05-27T02:31:47.136147 | 디스코드 알람 송출 완료
+2025-05-27T02:31:47.137243 | [MMF 시작선언: 자동화 운영 부트스트랩]
+SUCCESS: policies/mmf_policy.json
+SUCCESS: xp/xp_table.json
+SUCCESS: xp/rewards_catalog.yaml
+SUCCESS: projects/MMF-001/error_pool.json
+SUCCESS: .github/meta_logs/xp_events.json
+SUCCESS: xp/user_xp_table.json
+SUCCESS: xp/gpt_xp_table.json
+SUCCESS: xp/sentinel_xp_table.json
+SUCCESS: xp/sentinel_xp_table.json
+
+[XP 현황]
+사용자 XP: user_id: master / xp: 1250 / level: 7 / history: [{'date': '2025-05-27', 'delta': 50, 'event': '정책기여'}]
+GPT XP: bot_id: gptmmf / xp: 870 / level: 5 / history: [{'date': '2025-05-27', 'delta': 20, 'event': '자동화성공'}]
+센티넬 XP: id: sentinel-001 / xp: 460 / level: 3 / history: [{'date': '2025-05-27', 'delta': 15, 'event': '오류탐지'}]

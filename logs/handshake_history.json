@@ -1,0 +1,103 @@
+[
+  {
+    "datetime": "2025-05-27T02:23:54.351006",
+    "results": [
+      {
+        "filename": "policies/mmf_policy.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:53.164425"
+      },
+      {
+        "filename": "xp/xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:53.441567"
+      },
+      {
+        "filename": "xp/rewards_catalog.yaml",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:53.710632"
+      },
+      {
+        "filename": "projects/MMF-001/error_pool.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:54.025863"
+      },
+      {
+        "filename": ".github/meta_logs/xp_events.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:54.284532"
+      },
+      {
+        "filename": "xp/user_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:54.297725"
+      },
+      {
+        "filename": "xp/gpt_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:54.311842"
+      },
+      {
+        "filename": "xp/sentinel_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:54.331391"
+      },
+      {
+        "filename": "xp/sentinel_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:23:54.349585"
+      }
+    ]
+  },
+  {
+    "datetime": "2025-05-27T02:31:46.837301",
+    "results": [
+      {
+        "filename": "policies/mmf_policy.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:44.871152"
+      },
+      {
+        "filename": "xp/xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:45.157839"
+      },
+      {
+        "filename": "xp/rewards_catalog.yaml",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:45.421650"
+      },
+      {
+        "filename": "projects/MMF-001/error_pool.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:45.714312"
+      },
+      {
+        "filename": ".github/meta_logs/xp_events.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:45.999667"
+      },
+      {
+        "filename": "xp/user_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:46.261771"
+      },
+      {
+        "filename": "xp/gpt_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:46.535879"
+      },
+      {
+        "filename": "xp/sentinel_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:46.808627"
+      },
+      {
+        "filename": "xp/sentinel_xp_table.json",
+        "status": "SUCCESS",
+        "timestamp": "2025-05-27T02:31:46.824454"
+      }
+    ],
+    "xp_status": "[XP 현황]\n사용자 XP: user_id: master / xp: 1250 / level: 7 / history: [{'date': '2025-05-27', 'delta': 50, 'event': '정책기여'}]\nGPT XP: bot_id: gptmmf / xp: 870 / level: 5 / history: [{'date': '2025-05-27', 'delta': 20, 'event': '자동화성공'}]\n센티넬 XP: id: sentinel-001 / xp: 460 / level: 3 / history: [{'date': '2025-05-27', 'delta': 15, 'event': '오류탐지'}]"
+  }
+]

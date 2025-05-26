@@ -1,0 +1,2 @@
+2025-05-27T02:31:44.874681 | SNAPSHOT: projects/MMF-001/snapshots\mmf_policy.json_20250527023144
+2025-05-27T02:31:44.877022 | VALIDATE_FAIL: policies/mmf_policy.json 누락 필드: policies
