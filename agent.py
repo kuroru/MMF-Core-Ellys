@@ -16,6 +16,14 @@ print('### AGENT.PY 실행 경로:', os.path.abspath(__file__))
 
 app = Flask(__name__)
 
+# ------------------------
+# [NEW] 홈 라우트 추가!
+# ------------------------
+@app.route("/")
+def home():
+    return "MMF-Core-Ellys API 서버가 정상 구동 중입니다!"
+
+# 환경변수에서 API_KEY를 가져옴, 없으면 기본값 사용
 API_KEY = os.environ.get("API_KEY", "SuperSecretKey987654321!@#")
 
 def is_authorized(req):
@@ -124,6 +132,7 @@ def update_xp():
     print('>>> update_xp returning:', {"status": "ok", "event_count": len(xp_list)})
     return jsonify({"status": "ok", "event_count": len(xp_list)})
 
+# 6. 정책 자동화
 @app.route('/update_policy', methods=['POST'])
 def update_policy():
     if not is_authorized(request): return jsonify({"error": "Unauthorized"}), 401
@@ -141,8 +150,15 @@ def update_policy():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
-
+# ---------------------------
+# 반드시 Waitress WSGI 서버로 실행 (윈도우 서비스 완벽 호환)
+# ---------------------------
 if __name__ == "__main__":
-    print(app.url_map)
-    app.run(host="0.0.0.0", port=8080)
-
+    try:
+        from waitress import serve
+        print('>>> [INFO] Running with Waitress WSGI server...')
+        serve(app, host="0.0.0.0", port=8080)
+    except Exception as e:
+        with open("startup_error.log", "a", encoding="utf-8") as f:
+            import traceback
+            f.write(traceback.format_exc() + "\n")
