@@ -1,0 +1,12 @@
+{
+  "bots": [
+    {
+      "bot_id": "gptmmf",
+      "xp": 870,
+      "level": 5,
+      "history": [
+        {"date": "2025-05-27", "delta": 20, "event": "자동화성공"}
+      ]
+    }
+  ]
+}

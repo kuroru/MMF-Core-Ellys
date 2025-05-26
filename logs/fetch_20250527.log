@@ -1,0 +1,108 @@
+2025-05-27T01:33:00.462134 | SNAPSHOT: projects/MMF-001/snapshots\mmf_policy.json_20250527013300
+2025-05-27T01:33:00.738042 | SUCCESS: policies/mmf_policy.json → policies/mmf_policy.json
+2025-05-27T01:33:00.739778 | VALIDATE_FAIL: policies/mmf_policy.json 누락 필드: policies
+2025-05-27T01:33:00.741806 | SNAPSHOT: projects/MMF-001/snapshots\xp_table.json_20250527013300
+2025-05-27T01:33:01.031788 | SUCCESS: xp/xp_table.json → xp/xp_table.json
+2025-05-27T01:33:01.033452 | VALIDATE_OK: xp/xp_table.json
+2025-05-27T01:33:01.035191 | SNAPSHOT: projects/MMF-001/snapshots\rewards_catalog.yaml_20250527013301
+2025-05-27T01:33:01.307988 | SUCCESS: xp/rewards_catalog.yaml → xp/rewards_catalog.yaml
+2025-05-27T01:42:51.603331 | SNAPSHOT: projects/MMF-001/snapshots\xp_table.json_20250527014251
+
+2025-05-27T01:42:51.603935 | SNAPSHOT: projects/MMF-001/snapshots\rewards_catalog.yaml_20250527014251
+2025-05-27T01:42:51.604047 | SNAPSHOT: projects/MMF-001/snapshots\xp_events.json_20250527014251
+2025-05-27T01:42:51.604357 | SNAPSHOT: projects/MMF-001/snapshots\error_pool.json_20250527014251
+2025-05-27T01:42:51.896415 | SUCCESS: xp/rewards_catalog.yaml → xp/rewards_catalog.yaml
+2025-05-27T01:42:51.896849 | SUCCESS: policies/mmf_policy.json → policies/mmf_policy.json
+2025-05-27T01:42:51.898639 | VALIDATE_FAIL: policies/mmf_policy.json 누락 필드: policies
+2025-05-27T01:42:51.904090 | VALIDATE_OK: xp/xp_table.json
+2025-05-27T01:42:51.909210 | SUCCESS: .github/meta_logs/xp_events.json → .github/meta_logs/xp_events.json
+2025-05-27T01:42:51.915615 | SUCCESS: projects/MMF-001/error_pool.json → projects/MMF-001/error_pool.json
+2025-05-27T01:42:51.919068 | VALIDATE_ERR: .github/meta_logs/xp_events.json, Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+2025-05-27T01:42:51.921497 | VALIDATE_OK: projects/MMF-001/error_pool.json
+2025-05-27T01:42:52.150942 | FAIL: xp/gpt_xp_table.json [404]
+2025-05-27T01:42:52.154229 | FAIL: xp/sentinel_xp_table.json [404]
+2025-05-27T01:42:52.163751 | FAIL: xp/user_xp_table.json [404]
+2025-05-27T01:42:52.561263 | DISCORD ALERT SENT
+2025-05-27T01:45:08.562962 | SNAPSHOT: projects/MMF-001/snapshots\xp_table.json_20250527014508
+
+2025-05-27T01:45:08.563653 | SNAPSHOT: projects/MMF-001/snapshots\error_pool.json_20250527014508
+2025-05-27T01:45:08.563982 | SNAPSHOT: projects/MMF-001/snapshots\xp_events.json_20250527014508
+2025-05-27T01:45:08.564107 | SNAPSHOT: projects/MMF-001/snapshots\rewards_catalog.yaml_20250527014508
+2025-05-27T01:45:08.590204 | SUCCESS: .github/meta_logs/xp_events.json → .github/meta_logs/xp_events.json
+2025-05-27T01:45:08.590308 | SUCCESS: policies/mmf_policy.json → policies/mmf_policy.json
+2025-05-27T01:45:08.590384 | SUCCESS: projects/MMF-001/error_pool.json → projects/MMF-001/error_pool.json
+2025-05-27T01:45:08.590490 | SUCCESS: xp/rewards_catalog.yaml → xp/rewards_catalog.yaml
+2025-05-27T01:45:08.590706 | SUCCESS: xp/xp_table.json → xp/xp_table.json
+2025-05-27T01:45:08.596848 | VALIDATE_OK: .github/meta_logs/xp_events.json
+2025-05-27T01:45:08.596982 | VALIDATE_OK: projects/MMF-001/e2025-05-27T01:45:08.597020 | VALIDATE_FAIL: policies/mmf_policy.json 누락 필드: policies
+2025-05-27T01:45:08.850277 | FAIL: xp/gpt_xp_table.json [404]
+2025-05-27T01:45:08.854255 | FAIL: xp/sentinel_xp_table.json [404]
+2025-05-27T01:45:08.872843 | FAIL: xp/user_xp_table.json [404]
+2025-05-27T01:45:09.188894 | DISCORD ALERT SENT
+2025-05-27T01:49:51.713821 | SNAPSHOT: projects/MMF-001/snapshots\xp_table.json_20250527014951
+2025-05-27T01:49:51.713913 | SNAPSHOT: projects/MMF-001/snapshots\mmf_policy.json_20250527014951
+2025-05-27T01:49:51.714410 | SNAPSHOT: projects/MMF-001/snapshots\error_pool.json_20250527014951
+2025-05-27T01:49:51.714482 | SNAPSHOT: projects/MMF-001/snapshots\xp_events.json_20250527014951
+2025-05-27T01:49:51.715038 | SNAPSHOT: projects/MMF-001/snapshots\rewards_catalog.yaml_20250527014951
+2025-05-27T01:49:51.992291 | SUCCESS: xp/rewards_catalog.yaml → xp/rewards_catalog.yaml
+2025-05-27T01:49:51.994431 | SUCCESS: xp/xp_table.json → xp/xp_table.json
+2025-05-27T01:49:51.995169 | SUCCESS: policies/mmf_policy.json → policies/mmf_policy.json
+2025-05-27T01:49:51.997309 | VALIDATE_FAIL: policies/mmf_policy.json 누락 필드: policies
+2025-05-27T01:49:52.001662 | SNAPSHOT: projects/MMF-001/snapshots\user_xp_table.json_20250527014951
+s.json
+2025-05-27T01:49:52.003787 | VALIDATE_OK: .github/meta_logs/xp_events.json
+2025-05-27T01:49:52.004779 | SNAPSHOT: projects/MMF-001/snapshots\gpt_xp_table.json_20250527014951
+2025-05-27T01:49:52.005086 | SNAPSHOT: projects/MMF-001/snapshots\sentinel_xp_table.json_20250527014951
+2025-05-27T01:49:52.006779 | SNAPSHOT: projects/MMF-001/snapshots\sentinel_xp_table.json_20250527014952
+2025-05-27T01:49:52.016877 | SUCCESS: projects/MMF-001/error_pool.json → projects/MMF-001/error_pool.json
+2025-05-27T01:49:52.018510 | VALIDATE_OK: projects/MMF-001/error_pool.json
+2025-05-27T01:49:52.254044 | FAIL: xp/user_xp_table.json [404]
+2025-05-27T01:49:52.261206 | FAIL: xp/sentinel_xp_table.json [404]
+2025-05-27T01:49:52.284204 | FAIL: xp/gpt_xp_table.json [404]
+2025-05-27T01:49:52.577759 | DISCORD ALERT SENT
+2025-05-27T01:52:56.206300 | SNAPSHOT: projects/MMF-001/snapshots\xp_table.json_20250527015256
+
+2025-05-27T01:52:56.206558 | SNAPSHOT: projects/MMF-001/snapshots\error_pool.json_20250527015256
+2025-05-27T01:52:56.207077 | SNAPSHOT: projects/MMF-001/snapshots\xp_events.json_20250527015256
+2025-05-27T01:52:56.207587 | SNAPSHOT: projects/MMF-001/snapshots\rewards_catalog.yaml_20250527015256
+2025-05-27T01:52:56.230695 | SUCCESS: policies/mmf_policy.json → policies/mmf_policy.json
+2025-05-27T01:52:56.230882 | SUCCESS: xp/rewards_catalog.yaml → xp/rewards_catalog.yaml
+2025-05-27T01:52:56.231028 | SUCCESS: projects/MMF-001/error_pool.json → projects/MMF-001/error_pool.json
+2025-05-27T01:52:56.231055 | SUCCESS: xp/xp_table.json → xp/xp_table.json
+2025-05-27T01:52:56.233665 | SNAPSHOT: projects/MMF-001/snapshots\user_xp_table.json_20250527015256
+2025-05-27T01:52:56.234337 | VALIDATE_FAIL: policies/mmf_policy.json 누락 필드: policies
+2025-05-27T01:52:56.234473 | VALIDATE_OK: projects/MMF-001/error_pool.json
+2025-05-27T01:52:56.234766 | VALIDATE_OK: xp/xp_table.json
+xp_events.json
+2025-05-27T01:52:56.236821 | SNAPSHOT: projects/MMF-001/snapshots\gpt_xp_table.json_20250527015256
+2025-05-27T01:52:56.236903 | SNAPSHOT: projects/MMF-001/snapshots\sentinel_xp_table.json_20250527015256
+2025-05-27T01:52:56.237081 | SNAPSHOT: projects/MMF-001/snapshots\sentinel_xp_table.json_20250527015256
+2025-05-27T01:52:56.478141 | FAIL: xp/user_xp_table.json [404]
+2025-05-27T01:52:56.501777 | FAIL: xp/gpt_xp_table.json [404]
+2025-05-27T01:52:56.507411 | FAIL: xp/sentinel_xp_table.json [404]
+2025-05-27T01:52:56.907187 | DISCORD ALERT SENT
+2025-05-27T02:00:50.584359 | SNAPSHOT: projects/MMF-001/snapshots\mmf_policy.json_20250527020050
+2025-05-27T02:00:50.584424 | SNAPSHOT: projects/MMF-001/snapshots\xp_table.json_20250527020050
+2025-05-27T02:00:50.584915 | SNAPSHOT: projects/MMF-001/snapshots\error_pool.json_20250527020050
+2025-05-27T02:00:50.585114 | SNAPSHOT: projects/MMF-001/snapshots\xp_events.json_20250527020050
+2025-05-27T02:00:50.585485 | SNAPSHOT: projects/MMF-001/snapshots\rewards_catalog.yaml_20250527020050
+2025-05-27T02:00:50.859992 | SUCCESS: .github/meta_logs/xp_events.json → .github/meta_logs/xp_events.json
+2025-05-27T02:00:50.860054 | SUCCESS: policies/mmf_policy.json → policies/mmf_policy.json
+2025-05-27T02:00:50.863206 | VALIDATE_OK: .github/meta_logs/xp_events.json
+2025-05-27T02:00:50.863250 | VALIDATE_FAIL: policies/mmf_policy.json 누락 필드: policies
+2025-05-27T02:00:50.865147 | SNAPSHOT: projects/MMF-001/snapshots\gpt_xp_table.json_20250527020050
+
+2025-05-27T02:00:50.877011 | SUCCESS: projects/MMF-001/error_pool.json → projects/MMF-001/error_pool.json
+2025-05-27T02:00:50.877092 | SUCCESS: xp/rewards_catalog.yaml → xp/rewards_catalog.yaml
+2025-05-27T02:00:50.878308 | SUCCESS: xp/xp_table.json → xp/xp_table.json
+2025-05-27T02:00:50.878871 | VALIDATE_OK: projects/MMF-001/error_pool.json
+2025-05-27T02:00:50.879484 | SNAPSHOT: projects/MMF-001/snapshots\sentinel_xp_table.json_20250527020050
+2025-05-27T02:00:50.880150 | VALIDATE_OK: xp/xp_table.json
+2025-05-27T02:00:50.881241 | SNAPSHOT: projects/MMF-001/snapshots\sentinel_xp_table.json_20250527020050
+2025-05-27T02:00:51.133148 | SUCCESS: xp/gpt_xp_table.json → xp/gpt_xp_table.json
+2025-05-27T02:00:51.134725 | VALIDATE_OK: xp/gpt_xp_table.json
+2025-05-27T02:00:51.138579 | SUCCESS: xp/user_xp_table.json → xp/user_xp_table.json
+2025-05-27T02:00:51.140041 | VALIDATE_OK: xp/user_xp_table.json
+2025-05-27T02:00:51.152990 | SUCCESS: xp/sentinel_xp_table.json → xp/sentinel_xp_table.json
+2025-05-27T02:00:51.153124 | SUCCESS: xp/sentinel_xp_table.json → xp/sentinel_xp_table.json
+2025-05-27T02:00:51.154748 | VALIDATE_OK: xp/sentinel_xp_table.json

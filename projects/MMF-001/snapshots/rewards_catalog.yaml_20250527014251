@@ -1,0 +1,61 @@
+# MMF Core Ellys — 핵심 보상 10종 자동생성 샘플
+rewards:
+  - id: R-001
+    name: 집중력 부스터
+    desc: 30분간 몰입력 2배 증가
+    xp_required: 100
+    cooldown_min: 60
+
+  - id: R-002
+    name: 신속 실행 토큰
+    desc: 단계 1회 즉시 완료 처리
+    xp_required: 200
+    cooldown_min: 120
+
+  - id: R-003
+    name: 오류 무시 패스
+    desc: 한 번의 에러 감점 자동 면제
+    xp_required: 150
+    cooldown_min: 90
+
+  - id: R-004
+    name: 데이터 뷰 확장권
+    desc: 모든 이력 로그 1회 전체 열람권
+    xp_required: 180
+    cooldown_min: 180
+
+  - id: R-005
+    name: 리워드 더블업
+    desc: 1시간 내 XP 2배 보상
+    xp_required: 250
+    cooldown_min: 240
+
+  - id: R-006
+    name: 긴급 지원 호출권
+    desc: Core-GPT 도움 즉시 호출 (상담 우선권)
+    xp_required: 100
+    cooldown_min: 60
+
+  - id: R-007
+    name: 실수 복구권
+    desc: 최근 1개 실수/오류 즉시 무효화
+    xp_required: 120
+    cooldown_min: 90
+
+  - id: R-008
+    name: 커스텀 미션 생성권
+    desc: 나만의 도전과제 1회 추가
+    xp_required: 80
+    cooldown_min: 30
+
+  - id: R-009
+    name: 정보 열람 확장권
+    desc: 숨겨진 배경정보/메타 데이터 1회 열람
+    xp_required: 140
+    cooldown_min: 60
+
+  - id: R-010
+    name: 전략 시뮬레이션 모드
+    desc: 30분간 미래 예측/리스크 시나리오 시뮬레이션 활성
+    xp_required: 300
+    cooldown_min: 360

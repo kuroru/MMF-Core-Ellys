@@ -1,0 +1,9 @@
+[
+  {
+    "timestamp": "2025-05-25T23:56:41.028588",
+    "user": "마스터",
+    "event_type": "테스트 XP",
+    "xp_delta": 50,
+    "description": "XP/보상 자동화 테스트"
+  }
+]

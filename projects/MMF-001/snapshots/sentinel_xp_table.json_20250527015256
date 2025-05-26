@@ -1,0 +1,12 @@
+{
+  "sentinels": [
+    {
+      "id": "sentinel-001",
+      "xp": 460,
+      "level": 3,
+      "history": [
+        {"date": "2025-05-27", "delta": 15, "event": "오류탐지"}
+      ]
+    }
+  ]
+}

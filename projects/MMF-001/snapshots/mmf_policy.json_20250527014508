@@ -1,0 +1,13 @@
+{
+  "version": "v3.5.1",
+  "last_update": "2025-05-25",
+  "xp_policy": {
+    "min_xp": 0,
+    "level_up_threshold": 100,
+    "reward_system": "signature"
+  },
+  "error_policy": {
+    "auto_archive": true,
+    "fail_log_notify": true
+  }
+}

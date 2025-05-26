@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "user_id": "master",
+      "xp": 1250,
+      "level": 7,
+      "history": [
+        {"date": "2025-05-27", "delta": 50, "event": "정책기여"}
+      ]
+    }
+  ]
+}
