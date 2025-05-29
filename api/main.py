@@ -1,9 +1,7 @@
-# api/main.py
 import os, datetime, json, httpx, pathlib
 from fastapi import FastAPI, HTTPException, Request
 
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
-
 app = FastAPI(...)
 
 def handshake() -> list[str]:
@@ -23,6 +21,27 @@ def handshake() -> list[str]:
             raise FileNotFoundError(path)
     return success
 
+def update_handshake_history(success_paths: list[str]):
+    """handshake_history.json에 entry를 누적 저장"""
+    ts = datetime.datetime.utcnow().isoformat()
+    entry = {
+        "datetime": ts,
+        "results": [{"filename": p, "status": "SUCCESS", "timestamp": ts} for p in success_paths]
+    }
+    history_path = "logs/handshake_history.json"
+    if os.path.exists(history_path):
+        with open(history_path, "r", encoding="utf-8") as f:
+            try:
+                history = json.load(f)
+            except Exception:
+                history = []
+    else:
+        history = []
+    history.insert(0, entry)
+    with open(history_path, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+    return history_path
+
 def log_and_notify(success_paths: list[str]):
     ts = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     log_path = f"logs/handshake_{ts}.log"
@@ -31,26 +50,31 @@ def log_and_notify(success_paths: list[str]):
         for p in success_paths:
             f.write(f"SUCCESS: {p}\n")
 
-    # 🔥 깃허브 자동 커밋/푸시 (여기서 실행!)
+    # 🔥 handshake_history.json에 기록 추가 & 커밋/푸시
+    history_json = update_handshake_history(success_paths)
+
     user = os.getenv("GITHUB_USER")
     pat = os.getenv("GH_PAT")
     repo = f"https://{user}:{pat}@github.com/{user}/mmf-core-ellys.git"
     try:
         import subprocess
-        subprocess.run(["git", "add", log_path])
-        subprocess.run(["git", "commit", "-m", f"chore: handshake {ts} [auto]"])
-        subprocess.run(["git", "push", repo, "main"])
+        subprocess.run(["git", "add", log_path], check=True)
+        subprocess.run(["git", "add", history_json], check=True)
+        subprocess.run(["git", "commit", "-m", f"chore: handshake {ts} [auto]"], check=True)
+        subprocess.run(["git", "push", repo, "main"], check=True)
     except Exception as e:
         print("git push error:", e)
 
     # Discord 알림
     if DISCORD_WEBHOOK:
         msg = f"✅ MMF 핸드셰이크 완료\n```\n" + "\n".join(success_paths) + "\n```"
-        httpx.post(DISCORD_WEBHOOK, json={"content": msg})
+        try:
+            httpx.post(DISCORD_WEBHOOK, json={"content": msg})
+        except Exception as e:
+            print("discord notify error:", e)
 
 @app.post("/mmf/start")
 async def start(payload: dict, request: Request):
-    # (API 키 미들웨어로 인증 완료 가정)
     try:
         ok = handshake()
         log_and_notify(ok)
