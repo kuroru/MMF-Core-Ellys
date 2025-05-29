@@ -20,7 +20,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"error": "Global handler", "traceback": tb},
     )
 
-from fastapi.exceptions import HTTPException
+from starlette.exceptions import HTTPException
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
