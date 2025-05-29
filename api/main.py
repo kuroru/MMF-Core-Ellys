@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 print("✅ API MAIN LOADED")
+assert False, "테스트"
 
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 app = FastAPI(title="MMF Debug API")
@@ -18,6 +19,16 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"error": "Global handler", "traceback": tb},
     )
+
+from fastapi.exceptions import HTTPException
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": "HTTP Exception", "detail": exc.detail},
+    )
+
 
 def handshake() -> list[str]:
     required = [
