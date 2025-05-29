@@ -9,6 +9,14 @@ app = FastAPI(title="MMF Debug API")
 class TriggerCommand(BaseModel):
     command: str
 
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    tb = traceback.format_exc()
+    return JSONResponse(
+        status_code=500,
+        content={"error": "Global handler", "traceback": tb},
+    )
+
 def handshake() -> list[str]:
     required = [
         "policies/mmf_policy.json",
@@ -76,23 +84,15 @@ def log_and_notify(success_paths: list[str]):
 
 @app.post("/mmf/start")
 async def start(payload: dict = {}, request: Request = None):
-    try:
-        ok = handshake()
-        log_and_notify(ok)
-        return {"status": "started"}
-    except Exception:
-        tb = traceback.format_exc()
-        return JSONResponse(status_code=500, content={"error": tb})
+    ok = handshake()
+    log_and_notify(ok)
+    return {"status": "started"}
 
 @app.post("/mmf/trigger")
 async def trigger(command: TriggerCommand):
-    try:
-        if command.command == "mmf_start":
-            ok = handshake()
-            log_and_notify(ok)
-            return {"status": "triggered", "command": command.command}
-        else:
-            raise ValueError(f"Unknown command: {command.command}")
-    except Exception:
-        tb = traceback.format_exc()
-        return JSONResponse(status_code=500, content={"error": tb})
+    if command.command == "mmf_start":
+        ok = handshake()
+        log_and_notify(ok)
+        return {"status": "triggered", "command": command.command}
+    else:
+        raise ValueError(f"Unknown command: {command.command}")
