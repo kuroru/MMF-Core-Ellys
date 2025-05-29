@@ -44,6 +44,19 @@ def update_handshake_history(success_paths: list[str]):
         json.dump(history, f, ensure_ascii=False, indent=2)
     return history_path
 
+def git_push(*paths):
+    user = os.getenv("GITHUB_USER")
+    pat = os.getenv("GH_PAT")
+    repo = f"https://{user}:{pat}@github.com/{user}/mmf-core-ellys.git"
+    try:
+        import subprocess
+        for path in paths:
+            subprocess.run(["git", "add", path], check=True)
+        subprocess.run(["git", "commit", "-m", "chore: handshake [auto]"], check=True)
+        subprocess.run(["git", "push", repo, "main"], check=True)
+    except Exception as e:
+        print("git push error:", e)
+
 def log_and_notify(success_paths: list[str]):
     ts = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     log_path = f"logs/handshake_{ts}.log"
@@ -53,18 +66,7 @@ def log_and_notify(success_paths: list[str]):
             f.write(f"SUCCESS: {p}\n")
 
     history_json = update_handshake_history(success_paths)
-
-    user = os.getenv("GITHUB_USER")
-    pat = os.getenv("GH_PAT")
-    repo = f"https://{user}:{pat}@github.com/{user}/mmf-core-ellys.git"
-    try:
-        import subprocess
-        subprocess.run(["git", "add", log_path], check=True)
-        subprocess.run(["git", "add", history_json], check=True)
-        subprocess.run(["git", "commit", "-m", f"chore: handshake {ts} [auto]"], check=True)
-        subprocess.run(["git", "push", repo, "main"], check=True)
-    except Exception as e:
-        print("git push error:", e)
+    git_push(log_path, history_json)
 
     if DISCORD_WEBHOOK:
         msg = f"✅ MMF 핸드셰이크 완료\n```\n" + "\n".join(success_paths) + "\n```"
@@ -84,12 +86,14 @@ async def start(payload: dict, request: Request):
 
 @app.post("/mmf/trigger")
 async def trigger(command: TriggerCommand):
+    print(f"[TRIGGER] Received command: {command.command}")
+    # 예시: command 값에 따라 분기, 여기선 handshake만 예시
     if command.command == "mmf_start":
         try:
             ok = handshake()
             log_and_notify(ok)
-            return {"status": "triggered", "command": command.command}
+            return {"status": "triggered", "detail": "handshake and log complete"}
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
     else:
-        raise HTTPException(status_code=400, detail=f"Unknown command: {command.command}")
+        raise HTTPException(status_code=400, detail="Unknown command")
