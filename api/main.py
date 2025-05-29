@@ -1,5 +1,6 @@
 import os, datetime, json, httpx, pathlib, traceback
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
@@ -21,7 +22,7 @@ def handshake() -> list[str]:
         if pathlib.Path(path).is_file():
             success.append(path)
         else:
-            raise FileNotFoundError(f"🔍 파일 없음: {path}")
+            raise FileNotFoundError(f"파일 없음: {path}")
     return success
 
 def update_handshake_history(success_paths: list[str]):
@@ -31,12 +32,12 @@ def update_handshake_history(success_paths: list[str]):
         "results": [{"filename": p, "status": "SUCCESS", "timestamp": ts} for p in success_paths]
     }
     history_path = "logs/handshake_history.json"
+    os.makedirs("logs", exist_ok=True)
     if os.path.exists(history_path):
         try:
             with open(history_path, "r", encoding="utf-8") as f:
                 history = json.load(f)
-        except Exception as e:
-            print("⚠️ JSON 파싱 실패:", e)
+        except:
             history = []
     else:
         history = []
@@ -48,9 +49,8 @@ def update_handshake_history(success_paths: list[str]):
 def log_and_notify(success_paths: list[str]):
     ts = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     log_path = f"logs/handshake_{ts}.log"
-    os.makedirs("logs", exist_ok=True)
     with open(log_path, "w", encoding="utf-8") as f:
-        f.write(f"{ts} | [MMF 시작선언 핸드셰이크]\n")
+        f.write(f"{ts} | [MMF 핸드셰이크]\n")
         for p in success_paths:
             f.write(f"SUCCESS: {p}\n")
 
@@ -63,17 +63,16 @@ def log_and_notify(success_paths: list[str]):
         import subprocess
         subprocess.run(["git", "add", log_path], check=True)
         subprocess.run(["git", "add", history_json], check=True)
-        subprocess.run(["git", "commit", "-m", f"chore: handshake {ts} [auto]"], check=True)
+        subprocess.run(["git", "commit", "-m", f"chore: handshake {ts}"], check=True)
         subprocess.run(["git", "push", repo, "main"], check=True)
     except Exception as e:
-        print("⚠️ git push error:", e)
+        print("git push 오류:", e)
 
     if DISCORD_WEBHOOK:
-        msg = f"✅ MMF 핸드셰이크 완료\n```\n" + "\n".join(success_paths) + "\n```"
         try:
-            httpx.post(DISCORD_WEBHOOK, json={"content": msg})
+            httpx.post(DISCORD_WEBHOOK, json={"content": "✅ MMF 핸드셰이크 완료"})
         except Exception as e:
-            print("⚠️ discord notify error:", e)
+            print("디스코드 알림 실패:", e)
 
 @app.post("/mmf/start")
 async def start(payload: dict = {}, request: Request = None):
@@ -81,10 +80,9 @@ async def start(payload: dict = {}, request: Request = None):
         ok = handshake()
         log_and_notify(ok)
         return {"status": "started"}
-    except Exception as e:
+    except Exception:
         tb = traceback.format_exc()
-        print("🔥 내부 오류 발생:\n", tb)
-        raise HTTPException(status_code=500, detail=tb)
+        return JSONResponse(status_code=500, content={"error": tb})
 
 @app.post("/mmf/trigger")
 async def trigger(command: TriggerCommand):
@@ -95,7 +93,6 @@ async def trigger(command: TriggerCommand):
             return {"status": "triggered", "command": command.command}
         else:
             raise ValueError(f"Unknown command: {command.command}")
-    except Exception as e:
+    except Exception:
         tb = traceback.format_exc()
-        print("🔥 트리거 오류:\n", tb)
-        raise HTTPException(status_code=500, detail=tb)
+        return JSONResponse(status_code=500, content={"error": tb})
