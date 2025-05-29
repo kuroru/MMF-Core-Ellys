@@ -1,11 +1,14 @@
 import os, datetime, json, httpx, pathlib
 from fastapi import FastAPI, HTTPException, Request
+from pydantic import BaseModel
 
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
-app = FastAPI(...)
+app = FastAPI(title="MMF API Server")
+
+class TriggerCommand(BaseModel):
+    command: str
 
 def handshake() -> list[str]:
-    """필수 경로 점검 후 성공 목록 반환"""
     required = [
         "policies/mmf_policy.json",
         "xp/xp_table.json",
@@ -22,7 +25,6 @@ def handshake() -> list[str]:
     return success
 
 def update_handshake_history(success_paths: list[str]):
-    """handshake_history.json에 entry를 누적 저장"""
     ts = datetime.datetime.utcnow().isoformat()
     entry = {
         "datetime": ts,
@@ -50,7 +52,6 @@ def log_and_notify(success_paths: list[str]):
         for p in success_paths:
             f.write(f"SUCCESS: {p}\n")
 
-    # 🔥 handshake_history.json에 기록 추가 & 커밋/푸시
     history_json = update_handshake_history(success_paths)
 
     user = os.getenv("GITHUB_USER")
@@ -65,7 +66,6 @@ def log_and_notify(success_paths: list[str]):
     except Exception as e:
         print("git push error:", e)
 
-    # Discord 알림
     if DISCORD_WEBHOOK:
         msg = f"✅ MMF 핸드셰이크 완료\n```\n" + "\n".join(success_paths) + "\n```"
         try:
@@ -81,3 +81,15 @@ async def start(payload: dict, request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     return {"status": "started"}
+
+@app.post("/mmf/trigger")
+async def trigger(command: TriggerCommand):
+    if command.command == "mmf_start":
+        try:
+            ok = handshake()
+            log_and_notify(ok)
+            return {"status": "triggered", "command": command.command}
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+    else:
+        raise HTTPException(status_code=400, detail=f"Unknown command: {command.command}")
