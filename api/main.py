@@ -30,6 +30,19 @@ def log_and_notify(success_paths: list[str]):
         f.write(f"{ts} | [MMF 시작선언 핸드셰이크]\n")
         for p in success_paths:
             f.write(f"SUCCESS: {p}\n")
+
+    # 🔥 깃허브 자동 커밋/푸시 (여기서 실행!)
+    user = os.getenv("GITHUB_USER")
+    pat = os.getenv("GH_PAT")
+    repo = f"https://{user}:{pat}@github.com/{user}/mmf-core-ellys.git"
+    try:
+        import subprocess
+        subprocess.run(["git", "add", log_path])
+        subprocess.run(["git", "commit", "-m", f"chore: handshake {ts} [auto]"])
+        subprocess.run(["git", "push", repo, "main"])
+    except Exception as e:
+        print("git push error:", e)
+
     # Discord 알림
     if DISCORD_WEBHOOK:
         msg = f"✅ MMF 핸드셰이크 완료\n```\n" + "\n".join(success_paths) + "\n```"
