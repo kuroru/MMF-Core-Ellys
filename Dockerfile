@@ -1,5 +1,9 @@
 FROM python:3.11-slim
+
 WORKDIR /app
+
+# 0. git, ca-certificates 설치(★ 이 줄만 추가)
+RUN apt-get update && apt-get install -y git ca-certificates
 
 # 1. 의존성
 COPY requirements.txt .
