@@ -1,4 +1,3 @@
-# mmf_trigger_test.py
 import httpx
 
 url = "https://mmf-roleplay-1042382168153.asia-northeast3.run.app/mmf/trigger"
@@ -9,6 +8,9 @@ payload = {
 try:
     response = httpx.post(url, json=payload)
     print("응답 코드:", response.status_code)
-    print("응답 내용:", response.text)
+    print("응답 본문 원본:", repr(response.text))
+    print("JSON 파싱 결과:", response.json())
+except httpx.HTTPStatusError as e:
+    print("HTTP 에러 발생:", e.response.status_code, e.response.text)
 except Exception as e:
-    print("요청 실패:", e)
+    print("일반 에러 발생:", str(e))

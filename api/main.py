@@ -2,33 +2,36 @@ import os, datetime, json, httpx, pathlib, traceback
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 print("✅ API MAIN LOADED")
-assert False, "테스트"
+# assert False, "테스트"  # ← 디버그용 트랩은 일단 주석 처리
 
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 app = FastAPI(title="MMF Debug API")
 
+# ▶ 예외 미들웨어 등록
+class ExceptionInterceptorMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        try:
+            return await call_next(request)
+        except StarletteHTTPException as http_exc:
+            return JSONResponse(
+                status_code=http_exc.status_code,
+                content={"error": "HTTP Exception", "detail": http_exc.detail}
+            )
+        except Exception as exc:
+            tb = traceback.format_exc()
+            return JSONResponse(
+                status_code=500,
+                content={"error": "Global Exception", "traceback": tb}
+            )
+
+app.add_middleware(ExceptionInterceptorMiddleware)
+
 class TriggerCommand(BaseModel):
     command: str
-
-@app.exception_handler(Exception)
-async def global_exception_handler(request: Request, exc: Exception):
-    tb = traceback.format_exc()
-    return JSONResponse(
-        status_code=500,
-        content={"error": "Global handler", "traceback": tb},
-    )
-
-from starlette.exceptions import HTTPException
-
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request: Request, exc: HTTPException):
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={"error": "HTTP Exception", "detail": exc.detail},
-    )
-
 
 def handshake() -> list[str]:
     required = [
