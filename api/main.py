@@ -3,6 +3,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
+print("✅ API MAIN LOADED")
+
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 app = FastAPI(title="MMF Debug API")
 
