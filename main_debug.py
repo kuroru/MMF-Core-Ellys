@@ -1,5 +1,3 @@
-# main_debug.py
-
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -27,6 +25,12 @@ class ExceptionInterceptorMiddleware(BaseHTTPMiddleware):
 
 app.add_middleware(ExceptionInterceptorMiddleware)
 
+# ✅ 정상 응답 확인용
+@app.get("/")
+async def root():
+    return {"status": "OK"}
+
+# 예외 테스트용
 @app.get("/ping")
 async def ping():
     raise ValueError("강제 오류 발생")
