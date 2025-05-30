@@ -1,6 +1,6 @@
 import httpx
 
-url = "https://mmf-roleplay-1042382168153.asia-northeast3.run.app/ping"
+url = "https://mmf-roleplay-debug-1042382168153.asia-northeast3.run.app/ping"
 
 response = httpx.get(url)
 
