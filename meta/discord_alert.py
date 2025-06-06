@@ -1,7 +1,5 @@
 import requests
 
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1376562880387743875/2bW-X0wwrXOPIca60dvmBz10BGKzsBn3D1LfmD_4eJjgcG7fe3ygtOOY3X-1pBgK6fFT"
-
 def send_discord_alert(message):
     data = {"content": message}
     response = requests.post(DISCORD_WEBHOOK_URL, json=data)
